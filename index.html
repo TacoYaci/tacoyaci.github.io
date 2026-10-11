@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TacoYaci Math</title>
+<meta name="description" content="Small results in number theory by TacoYaci, a random Reddit user.">
+<link rel="icon" type="image/png" href="avatar.png">
+<style>
+:root {
+  --bg: #fff7fb;
+  --dot: #f1d7e6;
+  --card: #ffffff;
+  --text: #2b2233;
+  --muted: #6f6178;
+  --purple: #7437a6;
+  --pink: #bd357d;
+  --line: #f0d3e4;
+  --chip: #f7e8f2;
+  --shadow: 0 6px 22px rgba(189, 53, 125, 0.10);
+  --puff: #e9c6db;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1622;
+    --dot: #2d2335;
+    --card: #261e2e;
+    --text: #f3ebf6;
+    --muted: #b8a9c2;
+    --purple: #b98ae6;
+    --pink: #f08cc0;
+    --line: #3b2e46;
+    --chip: #33273d;
+    --shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+    --puff: #4a3a55;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1c1622; --dot: #2d2335; --card: #261e2e; --text: #f3ebf6; --muted: #b8a9c2;
+  --purple: #b98ae6; --pink: #f08cc0; --line: #3b2e46; --chip: #33273d;
+  --shadow: 0 6px 22px rgba(0, 0, 0, 0.35); --puff: #4a3a55;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background-color: var(--bg);
+  background-image: radial-gradient(var(--dot) 1.2px, transparent 1.2px);
+  background-size: 22px 22px;
+  color: var(--text);
+  font: 17px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+  padding-bottom: 110px; /* room for the runner */
+}
+a { color: var(--pink); }
+.rounded { font-family: ui-rounded, "SF Pro Rounded", "Arial Rounded MT Bold", "Hiragino Maru Gothic ProN", Quicksand, system-ui, sans-serif; }
+i.m, .m i { font-family: "Latin Modern Math", "STIX Two Math", "Cambria Math", "Times New Roman", serif; font-style: italic; font-size: 1.06em; }
+.m { white-space: nowrap; }
+
+/* header */
+.hero { max-width: 760px; margin: 0 auto; padding: 48px 16px 8px; text-align: center; }
+.hero-avatar { height: 150px; width: auto; animation: float 3.2s ease-in-out infinite; filter: drop-shadow(0 6px 8px rgba(116, 55, 166, 0.18)); }
+@keyframes float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-7px) rotate(2deg); } }
+h1 { margin: 8px 0 4px; font-size: clamp(2.3rem, 7vw, 3.4rem); line-height: 1.1; letter-spacing: -0.5px; }
+h1 .name { background: linear-gradient(90deg, var(--purple), var(--pink)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+h1 .math { color: var(--text); }
+.tagline { margin: 6px 0 18px; color: var(--muted); }
+nav { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+nav a { text-decoration: none; padding: 6px 14px; border-radius: 999px; background: var(--card); border: 2px solid var(--line); color: var(--purple); font-weight: 600; font-size: 0.95rem; }
+nav a:hover { border-color: var(--pink); color: var(--pink); }
+
+/* sections */
+main { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+h2 { font-size: 1.6rem; margin: 44px 0 16px; color: var(--purple); text-decoration: underline wavy var(--pink) 2px; text-underline-offset: 7px; }
+.paper { background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 20px 22px; margin: 0 0 18px; box-shadow: var(--shadow); transition: transform 0.2s ease, border-color 0.2s ease; }
+.paper:hover { transform: translateY(-2px); border-color: var(--pink); }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; color: var(--muted); font-size: 0.88rem; }
+.chip { background: var(--chip); color: var(--pink); border-radius: 999px; padding: 1px 10px; font-weight: 600; }
+.paper h3 { margin: 8px 0 6px; font-size: 1.28rem; line-height: 1.3; }
+.teaser { margin: 10px 0; padding: 8px 14px; border-left: 4px solid var(--pink); background: var(--chip); border-radius: 0 12px 12px 0; overflow-x: auto; }
+.abstract { margin: 8px 0 14px; }
+.links { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.btn { display: inline-block; text-decoration: none; padding: 6px 16px; border-radius: 999px; font-weight: 700; font-size: 0.95rem; border: 2px solid var(--purple); color: var(--purple); }
+.btn.primary { background: var(--purple); color: var(--card); }
+.btn:hover { border-color: var(--pink); color: var(--pink); }
+.btn.primary:hover { background: var(--pink); color: var(--card); }
+.doi { color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+.about { background: var(--card); border: 2px dashed var(--line); border-radius: 20px; padding: 18px 22px; }
+.about p { margin: 0 0 10px; }
+.about p:last-child { margin-bottom: 0; }
+footer { max-width: 760px; margin: 40px auto 0; padding: 0 16px; text-align: center; color: var(--muted); font-size: 0.88rem; }
+
+/* the little runner */
+.track { position: fixed; left: 0; right: 0; bottom: 0; height: 100px; overflow: hidden; pointer-events: none; z-index: 20; }
+.runner { position: absolute; left: 0; bottom: 8px; width: 46px; height: 72px; pointer-events: auto; cursor: pointer; animation: traverse 26s linear infinite; }
+.runner:hover { animation-play-state: paused; }
+@keyframes traverse {
+  0%   { transform: translateX(-80px) scaleX(1); }
+  48%  { transform: translateX(calc(100vw + 20px)) scaleX(1); }
+  50%  { transform: translateX(calc(100vw + 20px)) scaleX(-1); }
+  98%  { transform: translateX(-80px) scaleX(-1); }
+  100% { transform: translateX(-80px) scaleX(1); }
+}
+.jump { position: absolute; inset: 0; }
+.jump.hop { animation: hop 0.6s cubic-bezier(.3, .7, .4, 1); }
+@keyframes hop { 0% { transform: translateY(0); } 40% { transform: translateY(-38px) rotate(-8deg); } 100% { transform: translateY(0); } }
+.bob { position: absolute; inset: 0; transform-origin: 50% 100%; animation: bob 0.4s ease-in-out infinite; }
+.bob img { width: 100%; height: 100%; object-fit: contain; display: block; -webkit-user-drag: none; user-select: none; }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(5deg) scaleY(0.97); } 50% { transform: translateY(-7px) rotate(9deg) scaleY(1.02); } }
+.shadow { position: absolute; left: 8px; right: 8px; bottom: -3px; height: 6px; border-radius: 50%; background: rgba(116, 55, 166, 0.22); animation: shadow 0.4s ease-in-out infinite; }
+@keyframes shadow { 0%, 100% { transform: scaleX(1); opacity: 0.9; } 50% { transform: scaleX(0.7); opacity: 0.5; } }
+.puff { position: absolute; left: 2px; bottom: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--puff); opacity: 0; animation: puff 0.8s ease-out infinite; }
+.puff.two { animation-delay: 0.4s; left: 8px; }
+@keyframes puff { 0% { transform: translateX(0) scale(0.3); opacity: 0.8; } 100% { transform: translateX(-18px) translateY(-6px) scale(1.2); opacity: 0; } }
+.pop { position: fixed; bottom: 80px; transform: translateX(-50%); font-weight: 800; color: var(--pink); pointer-events: none; animation: popup 1s ease-out forwards; z-index: 21; }
+@keyframes popup { 0% { opacity: 0; transform: translate(-50%, 6px) scale(0.6); } 20% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -40px) scale(1.2); } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .hero-avatar, .bob, .shadow, .puff, .jump.hop { animation: none; }
+  .puff { display: none; }
+  .runner { animation: none; left: auto; right: 16px; }
+  .paper, .paper:hover { transition: none; transform: none; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .hero { padding-top: 32px; }
+  .paper { padding: 16px; }
+  .runner { width: 38px; height: 60px; }
+  .hero-avatar { height: 124px; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img class="hero-avatar" src="avatar.png" alt="TacoYaci's Reddit avatar: a white Snoo with curly hair, a heart balloon and a rocket">
+  <h1 class="rounded"><span class="name">TacoYaci</span> <span class="math">Math</span></h1>
+  <p class="tagline">Small results in number theory, written up by a random Reddit user.</p>
+  <nav class="rounded">
+    <a href="#papers">Papers</a>
+    <a href="#about">About</a>
+    <a href="https://tacoyaci.github.io/">Home</a>
+  </nav>
+</header>
+
+<main>
+  <section id="papers">
+    <h2 class="rounded">Papers</h2>
+    <!-- To add a paper: copy one <article> block to the top of this list, put the PDF into papers/, and use the concept DOI from Zenodo (it always points to the newest version). -->
+
+    <article class="paper">
+      <div class="meta"><span class="chip">Digit sums</span><time datetime="2026-10-11">11 October 2026</time><span>Version 2</span><span>7 pages</span></div>
+      <h3>When a number is the digit sum of its own power</h3>
+      <div class="teaser"><span class="m">90 = <i>s</i>(90<sup>19</sup>) = <i>s</i>(90<sup>20</sup>) = <i>s</i>(90<sup>21</sup>) = <i>s</i>(90<sup>22</sup>)</span></div>
+      <p class="abstract">I study positive integers satisfying <span class="m"><i>n</i> = <i>s</i>(<i>n</i><sup><i>k</i></sup>)</span>, where <i class="m">s</i> is the decimal digit sum. A congruence condition and a random digit model explain patterns in the solutions. The model suggests infinitely many pairs and triples of consecutive exponents. I conjecture that 90 is the only <span class="m"><i>n</i> &gt; 1</span> with four consecutive exponents. In other bases, an explicit construction gives arbitrarily long runs.</p>
+      <div class="links">
+        <a class="btn primary" href="papers/SumOfDigits.pdf" type="application/pdf">PDF</a>
+        <a class="btn" href="https://doi.org/10.5281/zenodo.23293038">Zenodo</a>
+        <span class="doi">DOI 10.5281/zenodo.23293038</span>
+      </div>
+    </article>
+
+    <article class="paper">
+      <div class="meta"><span class="chip">Divisor sums</span><time datetime="2026-10-11">11 October 2026</time><span>Version 3</span><span>13 pages</span></div>
+      <h3>Mixed products of strongly pseudoperfect numbers</h3>
+      <div class="teaser">For example 36, since 1 + 2 + 3 + 12 + 18 + 36 = 2 &middot; 36.</div>
+      <p class="abstract">A number <i class="m">n</i> is strongly pseudoperfect if some set of its divisors is closed under <span class="m"><i>d</i> &#8614; <i>n</i>/<i>d</i></span> and adds up to <span class="m">2<i>n</i></span>. I show that two such numbers <i class="m">a</i> and <i class="m">b</i> whose divisor sets contain 1 and <i class="m">n</i> can be mixed into <span class="m"><i>a</i><sup>2</sup><i>b</i></span>, even when they are not coprime. This gives infinitely many primitive odd examples with only three prime factors, including ones of Euler's form, and so answers Questions 18 and 20 of Wang and Zelinsky. I also count these examples and give two shorter proofs of their results.</p>
+      <div class="links">
+        <a class="btn primary" href="papers/StrongPseudoperfect.pdf" type="application/pdf">PDF</a>
+        <a class="btn" href="https://doi.org/10.5281/zenodo.23289447">Zenodo</a>
+        <span class="doi">DOI 10.5281/zenodo.23289447</span>
+      </div>
+    </article>
+  </section>
+
+  <section id="about">
+    <h2 class="rounded">About</h2>
+    <div class="about">
+      <p>I write under the name TacoYaci, a random Reddit user who is a professionally trained mathematician in real life. Here I collect small results that I find fun, mostly in elementary number theory.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  TacoYaci &middot; Reddit academy &middot; papers under CC BY 4.0 &middot; updated 11 October 2026
+</footer>
+
+<div class="track" aria-hidden="true">
+  <div class="runner" title="Click me">
+    <span class="puff"></span><span class="puff two"></span>
+    <div class="jump"><span class="shadow"></span><div class="bob"><img src="avatar.png" alt="" draggable="false"></div></div>
+  </div>
+</div>
+
+<script>
+(function () {
+  var runner = document.querySelector(".runner");
+  var jump = runner.querySelector(".jump");
+  var pops = ["♥", "🌮", "90", "26", "✨"];
+  runner.addEventListener("click", function () {
+    jump.classList.remove("hop");
+    void jump.offsetWidth;
+    jump.classList.add("hop");
+    var r = runner.getBoundingClientRect();
+    var s = document.createElement("span");
+    s.className = "pop";
+    s.textContent = pops[Math.floor(Math.random() * pops.length)];
+    s.style.left = (r.left + r.width / 2) + "px";
+    document.body.appendChild(s);
+    setTimeout(function () { s.remove(); }, 1000);
+  });
+})();
+</script>
+</body>
+</html>
