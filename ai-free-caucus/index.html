@@ -80,6 +80,8 @@ summary { cursor: pointer; color: var(--muted); font-weight: 600; }
 table { border-collapse: collapse; margin: 6px 0; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
 th, td { padding: 2px 10px 2px 0; text-align: right; } th:first-child, td:first-child { text-align: left; }
 th { color: var(--muted); font-weight: 600; border-bottom: 1px solid var(--line); }
+.note { color: var(--muted); font-size: 0.85rem; margin: 6px 0 2px; }
+.summary img { display: block; width: 100%; max-width: 440px; height: auto; margin: 6px auto 8px; border-radius: 12px; border: 1px solid var(--line); }
 .care { border-style: dashed; }
 .care ul { margin: 6px 0 4px; padding-left: 20px; }
 footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top: 24px; }
@@ -90,7 +92,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top
 <div class="wrap">
 <a class="back rounded" href="../"><img src="../avatar.png" alt="">TacoYaci Math</a>
 <h1 class="rounded">Keeping pace without AI? The AI-free caucus on arXiv</h1>
-<div class="meta"><span>Version 1, 11 October 2026</span><span>12 pages</span><a class="btn primary" href="../papers/AIFreeArxiv.pdf">PDF</a><a class="btn" href="../papers/AIFreeArxiv-infographic.png">Infographic</a></div>
+<div class="meta"><span>Version 2, 11 October 2026</span><span>12 pages</span><a class="btn primary" href="../papers/AIFreeArxiv.pdf">PDF</a><a class="btn" href="../papers/AIFreeArxiv-infographic.png">Infographic</a></div>
 <p class="lead">The <a href="https://www.ahmath.org/">Association for Human Mathematics</a> lists 809 mathematicians, and 532 of them, the AI-free caucus, state that they do not use AI models in their research. Here I compare their arXiv output with that of comparable mathematicians: all other authors of arXiv mathematics papers, reweighted to the same fields, career stage and earlier output. The analysis plan was fixed before any result was computed. Hover, tap or use the arrow keys on a chart to read the numbers.</p>
 <div class="key"><span class="caucus">AI-free caucus (237 active authors)</span><span class="ref">comparable mathematicians</span><span class="other">other AHM members</span></div>
 
@@ -122,6 +124,7 @@ footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top
   <p class="sub">Papers per author, three-month average, relative to 2017 to 2022. Triangles mark model releases of OpenAI, Anthropic and Google. Shaded: July to September 2026.</p>
   <div class="controls" data-legend></div>
   <div class="chart" tabindex="0"></div>
+  <p class="note">About the peak of the caucus at the end of 2025: a few members had a very productive quarter at the same time, mostly with coauthors and in quite different fields. None of these papers mentions an AI tool, and the peak starts in October 2025, a month before Gemini 3, so the timing does not fit a model release (exploratory check).</p>
   <details><summary>Show the numbers</summary><div data-table></div></details>
 </section>
 
@@ -148,6 +151,12 @@ footer { text-align: center; color: var(--muted); font-size: 0.85rem; margin-top
   <div class="controls" data-tabs></div>
   <div class="chart" tabindex="0"></div>
   <details><summary>Show the numbers</summary><div data-table></div></details>
+</section>
+
+<section class="card summary" id="summary">
+  <h2>The whole story in one image</h2>
+  <p class="sub">For sharing. Click the image for the full size.</p>
+  <a href="../papers/AIFreeArxiv-infographic.png"><img src="../papers/AIFreeArxiv-infographic.png" width="1200" height="1500" loading="lazy" alt="Infographic: Do mathematicians who don't use AI write fewer papers? Output per author from 2017 to 2022 to 2024 to 2026: AI-free caucus +15%, comparable mathematicians +17%. July to September 2026 against 2025: +13% against +52%. All arXiv mathematics papers per month: 5,144 in September 2025 and 10,284 in September 2026."></a>
 </section>
 
 <section class="card care">
