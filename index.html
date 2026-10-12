@@ -68,7 +68,8 @@ h1 .math { color: var(--text); }
 
 /* sections */
 main { max-width: 760px; margin: 0 auto; padding: 0 16px; }
-h2 { font-size: 1.6rem; margin: 44px 0 16px; color: var(--purple); text-decoration: underline wavy var(--pink) 2px; text-underline-offset: 7px; }
+h2 { font-size: 1.6rem; margin: 44px 0 16px; color: var(--purple); }
+h2::after { content: ""; display: block; width: 48px; height: 4px; margin-top: 8px; border-radius: 999px; background: linear-gradient(90deg, var(--purple), var(--pink)); }
 .paper { background: var(--card); border: 2px solid var(--line); border-radius: 20px; padding: 20px 22px; margin: 0 0 18px; box-shadow: var(--shadow); transition: transform 0.2s ease, border-color 0.2s ease; }
 .paper:hover { transform: translateY(-2px); border-color: var(--pink); }
 .meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; color: var(--muted); font-size: 0.88rem; }
@@ -148,6 +149,8 @@ footer { max-width: 760px; margin: 40px auto 0; padding: 0 16px; text-align: cen
       <p class="abstract">For <i>p</i>-adic Moy-Prasad subgroups of GL<sub><i>n</i></sub> above depth 1/(<i>p</i>−1), I give an exact uniformity test. Logarithms supply the roots, and commutators do the rest. Depth one for odd primes and two for <i>p</i>=2 are sharp universal bounds, as 3×3 examples show. Uniformity can come and go as the depths grow.</p>
       <div class="links">
         <a class="btn primary" href="papers/SaturatedMatrixGroups.pdf" type="application/pdf">PDF</a>
+        <a class="btn" href="https://doi.org/10.5281/zenodo.23318307">Zenodo</a>
+        <span class="doi">DOI 10.5281/zenodo.23318307</span>
       </div>
     </article>
 
